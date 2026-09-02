@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Source recordings. Not referenced by index.html, and 138MB between them.
+# Kept locally, excluded from the published site.
+*.mov
+*.avi
+
+# The original 3024x1804 60fps capture, 24MB. The deck loads
+# demo-emotobit-app-web.mp4 instead, which is the same clip at 1920x1146 30fps.
+images/demo-emotobit-app.mp4
+
+# Encodes an internal survey URL. The slide that used it is commented out of
+# index.html, and the image stays out of the published site.
+images/qr-codes/qr-feedback.png

@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don’t Wait for the Hardware — A Web Developer’s Path into Robotics</title>
+  <meta name="description"
+    content="A web developer's path into robotics: simulated sensors, pretrained perception, and a robot arm in simulation. Conference deck by Saurabh (Rob) Dahal." />
+  <meta name="author" content="Saurabh (Rob) Dahal" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Don’t Wait for the Hardware — A Web Developer’s Path into Robotics" />
+  <meta property="og:description"
+    content="Simulated sensors, pretrained perception, and a robot arm in simulation. No hardware required." />
+  <meta property="og:image" content="images/slide1-img.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="slides.css" />
+</head>
+
+<body>
+  <main class="deck" id="deck">
+    <section class="slide active cover">
+      <img class="cover-img" src="images/slide1-img.png"
+        alt="Title slide: Don’t wait for the hardware — A Web Developer’s Path into Robotics. Saurabh (Rob) Dahal, Developer Advocate, Agentic AI, AWS, August 2026." />
+      <div class="slide-num">1</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Hot take</div>
+        <h2>The number one skill for a web developer today is…</h2>
+        <div class="reveal-stage">
+          <div class="reveal-hint">ask the room · click to reveal</div>
+          <div class="reveal-word">courage.</div>
+        </div>
+        <p class="reveal-step muted">Not a framework. Everything else got cheaper to attempt:</p>
+        <div class="four-col reveal-step">
+          <div class="card">
+            <h3>AI coding assistants</h3>
+            <p>A patient expert for the domain you have not learned yet.</p>
+          </div>
+          <div class="card">
+            <h3>Lower barriers</h3>
+            <p>Advanced topics get more approachable every year.</p>
+          </div>
+          <div class="card">
+            <h3>GitHub repos</h3>
+            <p>Someone already solved a version of your problem. Borrow the idea.</p>
+          </div>
+          <div class="card">
+            <h3>Open source</h3>
+            <p>Real implementations you can read, run, and build on.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">2</div>
+    </section>
+    <section class="slide cover letterbox">
+      <img class="cover-img" src="images/slide-3-img.png"
+        alt="How it started: courage — said yes to demo for a robotics/hardware hackathon for devs. No robotics or hardware background, just a web developer with a lot of questions and a desire to learn. Personal interests: biomedical sciences, meditation, understanding the human body and mind. Found the EmotiBit device by using GitHub MCP with an agent to search GitHub repos for hardware I could program software with. EmotiBit is a wearable platform for physiological sensing: accessible, hackable, and perfect for getting started." />
+      <div class="slide-num">3</div>
+    </section>
+    <section class="slide cover letterbox" style="--letterbox: linear-gradient(90deg,#00040c,#000711)">
+      <img class="cover-img" src="images/emotibit.png"
+        alt="The device: EmotiBit. A wearable platform for physiological sensing, measuring heart rate (PPG), EDA (GSR), temperature, accelerometer and more. Photo of the EmotiBit board mounted on a wrist strap." />
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">4</div>
+    </section>
+    <section class="slide">
+      <div class="content media-split">
+        <div>
+          <div class="eyebrow">Under the hood</div>
+          <h2>This is the data it measures, and the components that do it.</h2>
+          <figure class="figure mt40">
+            <img class="media-photo" src="images/emotibit-2.jpeg"
+              alt="An EmotiBit board strapped to a forearm with a black band." />
+            <figcaption>Straps to the body in any orientation.</figcaption>
+          </figure>
+        </div>
+        <figure class="figure">
+          <img class="media-tall" src="images/emotibit-3.jpeg"
+            alt="Annotated EmotiBit diagram. Sensors: EDA/GSR for emotional status, emotion intensity, cognitive status and physiological activation; PPG for heart rate, heart rate variability, respiration, hydration and oxygen saturation; temperature for body temperature, health and emotional reactions; and it straps to the body in any orientation. Components: an SD card for data logging, data labelling for machine learning and full user data ownership; a customisable switch; Adafruit Feather compatible pins for WiFi, Bluetooth, LoRa, LED displays and motor controllers; and a 9-axis IMU with accelerometer, gyroscope and magnetometer for movement, activity, gesture, rotation and cardinal direction." />
+          <figcaption>Top half: what it senses. Bottom half: what it is made of.</figcaption>
+        </figure>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">5</div>
+    </section>
+        <section class="slide">
+      <div class="content">
+        <div class="eyebrow">I wasn’t trying to learn robotics</div>
+        <h2>I wanted to build a meditation coaching app.</h2>
+        <div class="two-col">
+          <div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Track physiological signals</span></li>
+              <li><span class="dot"></span><span>Understand meditation state</span></li>
+              <li><span class="dot"></span><span>Provide real-time coaching</span></li>
+              <li><span class="dot"></span><span>Make feedback feel personal and immediate</span></li>
+            </ul>
+          </div>
+          <div class="diagram">
+            <h3>Desired loop</h3>
+            <div class="pipeline">
+              <div class="pipe-node">Wearable</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">App</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">Coach</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">6</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Gateway 1: sensors</div>
+        <h2>The device: EmotiBit</h2>
+        <div class="two-col">
+          <div>
+            <p class="muted">A wearable bio-tracking device that can stream physiological and motion-related data.</p>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Heart-related signals</span></li>
+              <li><span class="dot"></span><span>Electrodermal activity</span></li>
+              <li><span class="dot"></span><span>Temperature</span></li>
+              <li><span class="dot"></span><span>Accelerometer / motion</span></li>
+            </ul>
+          </div>
+          <div class="diagram">
+            <h3>Developer translation</h3>
+            <p>A sensor is a continuous stream of imperfect measurements about the physical world.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">7</div>
+      
+    </section>
+    <section class="slide cover letterbox" style="--letterbox: linear-gradient(90deg,#010408,#010306)">
+      <img class="cover-img" src="images/slide-6-img.png"
+        alt="Problem: I didn’t have the device… yet. So I did what developers do. I built it anyway. A cardboard box labelled EmotiBit On The Way with a delivery truck icon, and a dotted route leading to a map pin." />
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">8</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">The thesis</div>
+        <h2 class="quote">Your path to robotics doesn't need a robot!</h2>
+        <p class="mt40 muted" style="max-width:1050px">It needs a developer willing to simulate sensors, stream data,
+          interpret the world, and close the loop.</p>
+      </div>
+      <div class="orb"></div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">9</div>
+      
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">The problem</div>
+        <h2>I didn’t have the device yet.</h2>
+        <p class="mt40 muted" style="max-width:900px">So instead of waiting, I did what developers do: I built around
+          the missing dependency.</p>
+        <div class="three-col">
+          <div class="card">
+            <div class="big-number">1</div>
+            <h3>Ask AI</h3>
+            <p>What would this data roughly look like?</p>
+          </div>
+          <div class="card">
+            <div class="big-number">2</div>
+            <h3>Simulate it</h3>
+            <p>Generate believable sensor values over time.</p>
+          </div>
+          <div class="card">
+            <div class="big-number">3</div>
+            <h3>Stream it</h3>
+            <p>Make the app behave as if hardware exists.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">10</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Fake it with AI help</div>
+        <h2>Synthetic sensor data became my first simulator.</h2>
+        <div class="two-col">
+          <div class="codebox">{
+            "heartRate": 72,
+            "eda": 0.41,
+            "temperature": 33.8,
+            "accel": { "x": 0.03, "y": -0.08, "z": 0.97 },
+            "timestamp": 1786324214.382
+            }</div>
+          <div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Sampling rate</span></li>
+              <li><span class="dot"></span><span>Noise</span></li>
+              <li><span class="dot"></span><span>Latency</span></li>
+              <li><span class="dot"></span><span>Dropouts</span></li>
+              <li><span class="dot"></span><span>State changes over time</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">11</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Stream it with WebSockets</div>
+        <h2>As far as the app knew, the device existed.</h2>
+        <div class="diagram mt40">
+          <div class="pipeline">
+            <div class="pipe-node">Synthetic<br>EmotiBit</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">WebSocket<br>stream</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Backend<br>processor</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Live<br>coach UI</div>
+          </div>
+        </div>
+        <p class="mt40 muted">Robotics concept unlocked: <span class="orange">sensor telemetry</span> + <span
+            class="orange">real-time feedback loop</span>.</p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">12</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">Demo</div>
+            <h2>The app running on data I made up.</h2>
+          </div>
+          <p class="lead">Live biometric stream, a session that shifts state, and coaching that reacts — all before the
+            hardware showed up.</p>
+        </div>
+        <figure class="video-stage">
+          <video class="video-player" controls preload="metadata" playsinline
+            poster="images/demo-emotobit-poster.jpg">
+            <source src="images/demo-emotobit-app-web.mp4" type="video/mp4" />
+            Your browser cannot play this video. Open images/demo-emotobit-app-web.mp4 directly.
+          </video>
+        </figure>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">13</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">How it works</div>
+            <h2>One adapter decides if the data is real.</h2>
+          </div>
+          <p class="lead">One adapter in. A Lambda normalizes, a WebSocket pushes to the dashboard, DynamoDB keeps the
+            session, and Bedrock coaches only when stress stays high.</p>
+        </div>
+        <div class="media-pair">
+          <figure>
+            <figcaption class="media-label">Adapter → Lambda processor → WebSocket → React dashboard. Coaching branches
+              off to Bedrock when stress stays above 70 for 30s.</figcaption>
+            <img src="images/architecture-diagram-emotibit-app.png"
+              alt="Architecture diagram. Data sources: a mock data generator sends BiometricSample messages, and a future EmotiBit device would send OSC/UDP, both into a Data Source Adapter. The adapter sends normalized data into the AWS backend. In the real-time pipeline, a Biometric Processor Lambda emits ProcessedMetrics to a WebSocket API Gateway, which pushes real-time updates to a React dashboard. The processor persists to DynamoDB sessions and metrics at 10 second intervals, and a Session History REST API reads it back. In the AI coaching path, when stress stays above 70 for 30 seconds the processor triggers an AI Coach Lambda, which prompts Amazon Bedrock with Claude and gets a response of 50 words or fewer, delivered through the WebSocket." />
+          </figure>
+          <figure>
+            <figcaption class="media-label">One union type and one branch decide where the samples come from.
+            </figcaption>
+            <img src="images/code-example-emotibit.png"
+              alt="TypeScript code. In shared/types.ts, DataSourceType is a union of 'mock' and 'emotibit', and DataSourceAdapterConfig holds a sourceType plus optional mockScenario and recoveryDurationMs. In bridge/data-source-adapter.ts, start(config) returns early if already running, throws an error saying the EmotiBit source type is not implemented and to use mock for the MVP, then otherwise constructs a MockDataGenerator with the configured scenario defaulting to calm, sets running to true and starts the mock ticks." />
+          </figure>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">14</div>
+      
+    </section>
+    <section class="slide cover letterbox" style="--letterbox: linear-gradient(90deg,#000511,#00040f)">
+      <img class="cover-img" src="images/slide-15-img.png"
+        alt="What I learned (without even realizing it). Building EmotiBit taught me the core concepts behind intelligent robotics systems. Simulation: test and validate behaviour in a virtual environment before deploying to real hardware. Sensor telemetry: collect data from sensors — PPG, GSR, IMU, temperature — just like robots sense the real world. Real-time streaming: stream data with low latency, a foundation for responsive robotic systems. Noisy data: learn how to handle imperfect, real-world sensor data, just like a robot. Signal processing: filter and extract meaning from signals, key for perception and state estimation. Feedback loops: close the loop — process, act, measure, improve — the heart of robotics and control systems. Callout: robotics is software that interacts with the physical world. Data in. Intelligence applied. Action out. Repeat. Artwork shows a glowing purple and blue brain wired to a white industrial robot arm." />
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">15</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Gateway 2: perception</div>
+        <h2>Then I gave my computer eyes.</h2>
+        <div class="two-col">
+          <div>
+            <p class="muted">A basketball shot mechanics app that watches me shoot and gives feedback.</p>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Camera as a sensor</span></li>
+              <li><span class="dot"></span><span>OpenCV / pose estimation</span></li>
+              <li><span class="dot"></span><span>Landmarks instead of raw pixels</span></li>
+              <li><span class="dot"></span><span>Mechanics feedback from geometry</span></li>
+            </ul>
+          </div>
+          <div class="diagram">
+            <h3>Camera → pose → mechanics</h3>
+            <p style="font-size:120px;text-align:center">⛹️‍♂️ → 🦴 → 📊</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">16</div>
+      
+    </section>
+    <section class="slide cover">
+      <img class="cover-img" src="images/slide-17-img.png"
+        alt="Then I gave my computer eyes. New goal: build an app that watches me shoot a basketball and gives me feedback. Four capabilities: pose estimation, shot tracking, feedback and insights, and progress over time. Photo of a basketball player at the top of a jump shot in a dark gym, with a purple pose-estimation skeleton of joints and connecting lines overlaid on his arms, shoulders, torso and legs." />
+      <!-- No .footer here: this 3:2 artwork fills its own height, so the copyright line would
+           land on top of the bottom bullet. Same handling as slide 3. Re-export the artwork at
+           1600x900 if you want the footer back on this slide. -->
+      <div class="slide-num">17</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Inspiration — and a barrier</div>
+        <h2>I found a basketball CV project… then saw the training cost.</h2>
+        <div class="three-col">
+          <div class="card">
+            <div class="big-number">10k</div>
+            <h3>Annotated images</h3>
+            <p>Dataset work before the app becomes useful.</p>
+          </div>
+          <div class="card">
+            <div class="big-number">200</div>
+            <h3>Training epochs</h3>
+            <p>Model training becomes a project by itself.</p>
+          </div>
+          <div class="card">
+            <div class="big-number">48h</div>
+            <h3>GPU time</h3>
+            <p>Useful, but not the lowest-friction MVP.</p>
+          </div>
+        </div>
+        <p class="mt40 muted">The question changed from: <span class="orange">“How do I reproduce this model?”</span> to
+          <span class="orange">“What problem am I actually solving first?”</span></p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">18</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">The lightweight path</div>
+            <h2>No training step. Same robotics concepts.</h2>
+          </div>
+          <p class="lead">Ed-Zh/Basketball-Analytics — pose estimation and trigonometry, about 560 lines of Python.
+            Each card: what the code does, then what robotics calls it.</p>
+        </div>
+        <div class="map-grid">
+          <div class="map-card">
+            <div class="map-tool">mediapipe.Pose</div>
+            <p class="map-does">33 body landmarks per frame, from a model someone else already trained.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">Perception</div>
+            <p class="map-why">The camera is the sensor. Pixels become a structured state vector.</p>
+          </div>
+          <div class="map-card">
+            <div class="map-tool">KNEE = (24, 26, 28)</div>
+            <p class="map-does">Hip, knee and ankle become a thigh, a shin, and the angle between them.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">Kinematic chain</div>
+            <p class="map-why">Rigid links joined at revolute joints — how a robot arm is described.</p>
+          </div>
+          <div class="map-card">
+            <div class="map-tool">savgol_filter</div>
+            <p class="map-does">Smooths every joint signal before anything gets differentiated.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">Sensor filtering</div>
+            <p class="map-why">Differentiating a noisy measurement amplifies the noise. Filter first.</p>
+          </div>
+          <div class="map-card">
+            <div class="map-tool">np.gradient</div>
+            <p class="map-does">Joint angle over time becomes angular velocity, then acceleration.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">State estimation</div>
+            <p class="map-why">Deriving the rates your sensor never measured directly.</p>
+          </div>
+          <div class="map-card">
+            <div class="map-tool">alpha ∝ torque</div>
+            <p class="map-does">Angular acceleration at a joint implies the force that caused it.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">Inverse dynamics</div>
+            <p class="map-why">Working backwards from observed motion to the effort behind it.</p>
+          </div>
+          <div class="map-card">
+            <div class="map-tool">argmax(alpha)</div>
+            <p class="map-does">Peak timing per muscle, measured against the glute as reference.</p>
+            <div class="map-arrow">↓</div>
+            <div class="map-concept">Closed-loop control</div>
+            <p class="map-why">Measure, compare to a setpoint, emit one correction. Repeat.</p>
+          </div>
+        </div>
+        <div class="cost-strip">
+          <div class="cost-label">What it cost</div>
+          <div class="cost-items">
+            <div><b>0</b>annotated images</div>
+            <div><b>0</b>training epochs</div>
+            <div><b>0</b>GPU hours</div>
+            <div><b>6</b>Python libraries</div>
+            <div><b>560</b>lines, laptop CPU</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">19</div>
+      
+    </section>
+    <section class="slide cover">
+      <img class="cover-img" src="images/slide-20-img.png"
+        alt="Perception with computer vision. Camera to pose estimation to body landmarks: from pixels to meaningful data. Four panels in sequence. Camera: RGB video from a webcam or phone, shown as a DSLR on a tripod. Pose estimation: MediaPipe detects the body and estimates 33 landmarks in 3D, shown as a photo of a player at the top of a jump shot. Pose estimation output: the body represented as key points, or landmarks, in 3D space, shown as a colour-coded stick figure of joints and connecting lines. Body landmarks: 33 landmarks provide the data to analyse movement, angles and mechanics, shown as the same skeleton in purple with white joint dots." />
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">20</div>
+    </section>
+    <section class="slide cover letterbox" style="--letterbox: #00050c">
+      <img class="cover-img" src="images/slide-21-img.png"
+        alt="What pose estimation taught me about robotics: from analysing a basketball shot to understanding how robots perceive, reason and act. A six-step pipeline. One, camera input: RGB video from a webcam or phone. Two, pose estimation: MediaPipe, 33 body landmarks in 3D. Three, landmarks: the body represented as key points in space. Four, geometry or kinematics: calculate joint angles, distances and vectors, with an elbow angle of 82 degrees and a knee angle of 61 degrees. Five, motion over time: track movement across frames for velocity, acceleration and consistency, shown as a multi-line angle-versus-time graph. Six, feedback and insight: a shot score of 78 out of 100 with per-item feedback — elbow alignment good, follow-through needs improvement, release height good. Below, an example basketball shot analysis pipeline: capture video, detect pose, compute angles, analyse movement, provide feedback. Then, how these concepts translate to robotics: camera equals sensor, since robots use cameras or LiDAR or IMU to perceive the world; landmarks equal perception, since robots detect key points or features to understand objects, people and the environment; joint angles equal kinematics, the foundation of robot movement and manipulation; joint angle over time equals dynamics, since velocity, acceleration and trajectories inform planning, control and stability; and the feedback loop equals intelligence, since robots use feedback to adapt, correct and improve their actions over time. A panel lists real projects on GitHub using Python and OpenCV: Basketball Analytics at github.com/Ed-Zh/Basketball-Analytics, which uses MediaPipe to analyse shooting mechanics, calculate joint angles and angular acceleration and suggest improvements; Golf Swing Analyzer at github.com/Haiyue-Chen/Golf-Swing-Analyzer, combining pose estimation, phase detection and joint angle comparison against expert data; and Fitness Form Correction at github.com/VuLeHoang-218/-Detecting-Correcting-Form-for-Pull-Up- for real-time exercise form feedback. Key takeaway: I did not need hardware to start learning robotics. By analysing human movement with Python, OpenCV and MediaPipe, I learned the same core principles robots use — perception, kinematics, dynamics and feedback. Don't wait for the hardware. Build the knowledge." />
+      <!-- No .footer here: this 3:2 artwork's bottom-left text runs to y~883 once fitted,
+           which is where the copyright line sits. It carries the AWS logo itself. Same
+           handling as slide 17. -->
+      <div class="slide-num">21</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">The pivot</div>
+        <h2>Form feedback is body geometry over time.</h2>
+        <div class="two-col">
+          <div class="diagram">
+            <h3>Custom detection</h3>
+            <div class="pipeline">
+              <div class="pipe-node">Dataset</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">Training</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">YOLO</div>
+            </div>
+          </div>
+          <div class="diagram">
+            <h3>Pretrained pose</h3>
+            <div class="pipeline">
+              <div class="pipe-node">Camera</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">33 landmarks</div>
+              <div class="arrow">→</div>
+              <div class="pipe-node">Geometry</div>
+            </div>
+          </div>
+        </div>
+        <p class="mt40 muted">AI did not just write code. It helped me <span class="orange">reframe the problem into one
+            I could afford to solve.</span></p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">22</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Zero-training MVP</div>
+        <h2>Pretrained pose estimation + trigonometry + coaching rules</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>Measure</h3>
+            <p>Elbow angle, knee bend, torso lean, wrist height, shoulder-hip alignment.</p>
+          </div>
+          <div class="card">
+            <h3>Segment</h3>
+            <p>Dip → rise → release → follow-through using wrist/hip movement over time.</p>
+          </div>
+          <div class="card">
+            <h3>Coach</h3>
+            <p>Flag the frame, explain the issue, give one correction at a time.</p>
+          </div>
+        </div>
+        <div class="codebox mt40">angle = arccos( dot(a,b) / (|a| * |b|) )
+
+          if elbow_angle_at_release > threshold:
+          feedback = "Elbow may be flaring at release."</div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">23</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Robotics concept unlocked</div>
+        <h2>Pixels became perception.</h2>
+        <div class="diagram mt40">
+          <div class="pipeline">
+            <div class="pipe-node">Pixels</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Person</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Skeleton</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">State</div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Feedback</div>
+          </div>
+        </div>
+        <p class="mt40 muted">A robot does the same kind of transformation: raw sensor data → useful model of the world
+          → action.</p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">24</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">Demo</div>
+            <h2>Perception, running on a phone clip.</h2>
+          </div>
+          <p class="lead">One person, one camera, no depth sensor and no trained model. Everything on screen is
+            derived from 33 landmarks per frame.</p>
+        </div>
+        <div class="media-portrait">
+          <div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Blue skeleton — the state estimate, redrawn every frame</span></li>
+              <li><span class="dot"></span><span>Joints — shoulder, elbow, hip, knee, ankle</span></li>
+              <li><span class="dot"></span><span>Bars — per-joint activation, green calm, red loaded</span></li>
+              <li><span class="dot"></span><span>The dip, the drive and the release all read off geometry</span></li>
+            </ul>
+            <p class="mt24 muted">Same loop a robot runs: sense, estimate, decide, repeat.</p>
+          </div>
+          <figure class="video-stage">
+            <video class="video-player" controls preload="metadata" playsinline
+              poster="images/shot-analysis-poster.jpg">
+              <source src="images/shot-analysis-edward1.mp4" type="video/mp4" />
+              Your browser cannot play this video. Open images/shot-analysis-edward1.mp4 directly.
+            </video>
+          </figure>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">25</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">The output</div>
+            <h2>Numbers out, one correction at a time.</h2>
+          </div>
+          <p class="lead">No neural net wrote this. Smoothed joint angles, differentiated twice, ranked by when each
+            peak arrives.</p>
+        </div>
+        <figure class="media-single">
+          <figcaption class="media-label">Top: per-joint activation across the shot. Bottom: speed, acceleration, a
+            score, and the timing fixes it ranked.</figcaption>
+          <img src="images/slide-after-shooting-demo-img.png"
+            alt="Two stacked line charts output by the analysis. The top chart plots relative activation from 0 to 1 against relative time from 0 to 1, with five lines: shoulder, hip, knee, ankle and elbow. Hip, knee, ankle and shoulder all peak together near 0.3 of the way through the shot, while the elbow peaks later, first around 0.5 and then strongly around 0.78. The bottom chart plots relative speed and acceleration against the same relative time, with acceleration peaking around 0.2 and again around 0.78 where it reaches its highest value. Above the bottom chart, an overall score of 77.4 in red, and coaching notes in blue: to improve the mechanical efficiency of your shot, consider maintaining the timing of your calf activation, contracting your tricep earlier, maintaining the timing of your shoulder activation, maintaining the timing of your glute activation, and maintaining the timing of your quad activation." />
+        </figure>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">26</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">The realization</div>
+        <h2>I had not built a robot — but I had learned pieces of the robotics stack.</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>Sensors & data</h3>
+            <p>Wearables, simulated telemetry, WebSockets, noisy streams.</p>
+          </div>
+          <div class="card">
+            <h3>Perception</h3>
+            <p>Camera frames, landmarks, motion, geometry, interpreted state.</p>
+          </div>
+          <div class="card">
+            <h3>Feedback loops</h3>
+            <p>Observe, estimate, decide, respond, observe again.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">27</div>
+      
+    </section>
+    <section class="slide cover letterbox" style="--letterbox: linear-gradient(90deg,#00010b,#00040f)">
+      <img class="cover-img" src="images/venn-diagram.png"
+        alt="What I realized. I started with a meditation app and a basketball project, and I ended up learning the core pieces of robotics. The robot wasn’t the starting point — curiosity was. Starting from what you love can lead you to the bigger picture; that’s how I found robotics. Beside that, a three-circle Venn diagram. Sensors and data: collecting real-world information using sensors like PPG, IMU, GSR and temperature. Perception: making sense of data through filtering, feature extraction and pattern recognition. Planning and control: deciding what to do and how to do it, through motion planning, control algorithms and feedback loops. Where all three overlap sits robotics, the integration of perception, decision and action. Underneath, each circle is restated: perception turns raw sensor data into meaningful understanding of the environment; robotics is where perception meets planning to create intelligent, autonomous behaviour; planning and control uses algorithms and feedback to move, interact and achieve goals safely and efficiently. Closing line: from curiosity to understanding, from projects I love to skills that build robots." />
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">28</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Gateway 3: robotics simulation</div>
+        <h2>Then I wanted to build a robot… and again, I had no hardware.</h2>
+        <div class="two-col">
+          <div>
+            <p class="muted">This time the answer was familiar:</p>
+            <h2 class="mt24 orange">simulate again.</h2>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>Virtual robot</span></li>
+              <li><span class="dot"></span><span>Virtual sensors</span></li>
+              <li><span class="dot"></span><span>Virtual environment</span></li>
+              <li><span class="dot"></span><span>Real robotics concepts</span></li>
+            </ul>
+          </div>
+          <div class="robot-icon">
+            <div class="robot-head"></div>
+            <div class="robot-body"></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">29</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">A simple simulated robot project</div>
+        <h2>Get from A to B without hitting anything.</h2>
+        <div class="diagram mt40">
+          <div class="pipeline">
+            <div class="pipe-node">Sensors<br><span class="small">LiDAR / camera / IMU</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Perception<br><span class="small">What is around me?</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Localization<br><span class="small">Where am I?</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Planning<br><span class="small">Where do I go?</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Control<br><span class="small">How do I move?</span></div>
+          </div>
+        </div>
+        <p class="mt40 muted">Now the pieces from the earlier projects have a robotics home.</p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">30</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content media-slide">
+        <div class="media-head">
+          <div>
+            <div class="eyebrow">Demo</div>
+            <h2>An arm I can command. Still no arm.</h2>
+          </div>
+          <p class="lead">ArmLab — a simulated SO-101 behind an HTTP API. Every skill on the right is a tool the agent
+            can call; here I am clicking them myself.</p>
+        </div>
+        <div class="media-aside">
+          <figure class="video-stage">
+            <video class="video-player" controls preload="metadata" playsinline
+              poster="images/robot-arm-poster.jpg">
+              <source src="images/robot-arm-demo.mp4" type="video/mp4" />
+              Your browser cannot play this video. Open images/robot-arm-demo.mp4 directly.
+            </video>
+          </figure>
+          <ul class="spec-list">
+            <li><b>Strands agent</b><span>Turns one plain-language goal into ordered tool calls.</span></li>
+            <li><b>Amazon Bedrock</b><span>The model doing the reasoning behind each call.</span></li>
+            <li><b>strands-robots</b><span>Robot("so101") gives the agent hands. Sim or real, same code.</span></li>
+            <li><b>MuJoCo</b><span>Physics stands in for the hardware. No GPU, no arm.</span></li>
+            <li><b>Skills</b><span>park, scan, pick and place. Primitives the agent composes.</span></li>
+            <li><b>Joint &amp; scene state</b><span>Six joints and the cube, streamed back as feedback.</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">31</div>
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Where Strands fits</div>
+        <h2>Agentic AI can sit above the robot stack.</h2>
+        <div class="diagram mt40">
+          <div class="pipeline">
+            <div class="pipe-node">Human goal<br><span class="small">“Inspect the room”</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Strands agent<br><span class="small">plan & reason</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Robot tools<br><span class="small">navigate / observe</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Policy / control<br><span class="small">physical actions</span></div>
+            <div class="arrow">→</div>
+            <div class="pipe-node">Simulator<br><span class="small">feedback</span></div>
+          </div>
+        </div>
+        <p class="mt40 muted">The agent decides <span class="orange">what</span> to do. The robot stack handles <span
+            class="orange">how</span> movement happens.</p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">32</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">A developer skill map</div>
+        <h2>Your web skills transfer more than you think.</h2>
+        <div class="two-col">
+          <div>
+            <ul class="bullets">
+              <li><span class="dot"></span><span>WebSockets → sensor streams</span></li>
+              <li><span class="dot"></span><span>React state → system state</span></li>
+              <li><span class="dot"></span><span>APIs → hardware interfaces</span></li>
+              <li><span class="dot"></span><span>Event-driven systems → robot events</span></li>
+              <li><span class="dot"></span><span>Dashboards → mission control</span></li>
+              <li><span class="dot"></span><span>Debugging → robotics survival skill</span></li>
+            </ul>
+          </div>
+          <div class="diagram">
+            <h3>New concepts you learn progressively</h3>
+            <p>Coordinate frames, kinematics, signal processing, state estimation, perception, planning, control, ROS,
+              simulation.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">33</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">AI coding assistants changed the entry cost</div>
+        <h2>Not because they remove learning — because they help you cross unfamiliar boundaries.</h2>
+        <div class="three-col">
+          <div class="card">
+            <h3>Translate</h3>
+            <p>“Explain ROS topics like I understand WebSockets.”</p>
+          </div>
+          <div class="card">
+            <h3>Substitute</h3>
+            <p>“What can I simulate so I do not need hardware yet?”</p>
+          </div>
+          <div class="card">
+            <h3>Reframe</h3>
+            <p>“Do I need a trained model, or can I use pretrained pose?”</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">34</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">The project ladder</div>
+        <h2>Start small. Grow toward real robots.</h2>
+        <div class="timeline">
+          <div class="step"><strong>1. Synthetic sensor dashboard</strong><span>Generate data, stream it, visualize
+              it.</span></div>
+          <div class="step"><strong>2. Computer vision coach</strong><span>Camera → pose → geometry → feedback.</span>
+          </div>
+          <div class="step"><strong>3. Multi-sensor fusion</strong><span>Combine webcam + fake IMU + event logic.</span>
+          </div>
+          <div class="step"><strong>4. Simulated robot</strong><span>Virtual sensors, planning, control.</span></div>
+          <div class="step"><strong>5. Real hardware</strong><span>Replace simulated interfaces when ready.</span></div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">35</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Closing</div>
+        <h2 class="quote">Don’t let the most expensive layer of a system stop you from learning the rest of the stack.
+        </h2>
+        <div class="three-col mt40">
+          <div class="card">
+            <h3>Missing sensor?</h3>
+            <p>Simulate the data.</p>
+          </div>
+          <div class="card">
+            <h3>Missing model?</h3>
+            <p>Use pretrained perception.</p>
+          </div>
+          <div class="card">
+            <h3>Missing robot?</h3>
+            <p>Simulate the robot.</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">36</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content center" style="padding-top:170px">
+        <h2 class="quote" style="margin:0 auto">Your first robotics project doesn’t need a robot.</h2>
+        <p class="mt40 muted">Simulate it. Build around it. Learn why it works. Then make it real.</p>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">37</div>
+      
+    </section>
+    <section class="slide">
+      <div class="content">
+        <div class="eyebrow">Resources</div>
+        <h2>Helpful resources to get started</h2>
+        <div class="qr-row">
+          <div class="qr-card">
+            <div class="qr-plate">
+              <img src="images/qr-codes/qr-kiro-setup.svg"
+                alt="QR code linking to the article “The only Kiro configurations you need for your first project” on builder.aws.com." />
+            </div>
+            <h3>Kiro</h3>
+            <p>The only configurations you need for your first project.</p>
+            <div class="qr-url">builder.aws.com</div>
+          </div>
+          <div class="qr-card">
+            <div class="qr-plate">
+              <img src="images/qr-codes/qr-agent-toolkit.svg"
+                alt="QR code linking to the article “Setting up the Agent Toolkit for AWS in Kiro, Codex, Claude Code and Cursor” on builder.aws.com." />
+            </div>
+            <h3>Agent Toolkit for AWS</h3>
+            <p>Wire it into Kiro, Codex, Claude Code or Cursor.</p>
+            <div class="qr-url">builder.aws.com</div>
+          </div>
+          <div class="qr-card">
+            <div class="qr-plate">
+              <img src="images/qr-codes/qr-strands-robots.svg"
+                alt="QR code linking to the Strands Robots documentation at strandsagents.com/docs/labs/robots." />
+            </div>
+            <h3>Strands Robots</h3>
+            <p>One Robot() call, in simulation or on hardware.</p>
+            <div class="qr-url">strandsagents.com/docs/labs/robots</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">38</div>
+    </section>
+    <!-- The in-room feedback slide lived here. It pointed at an internal survey
+         that is closed and unreachable from the public web, so it is left out of
+         the published deck. See README. -->
+    <!-- <section class="slide">
+    <section class="slide">
+      <div class="content center">
+        <div class="eyebrow">Stay in touch</div>
+        <h2>Connect with me on LinkedIn.</h2>
+        <div class="qr-solo">
+          <div class="qr-plate">
+            <img src="images/qr-codes/qr-linkedin.svg"
+              alt="QR code linking to Saurabh Dahal’s LinkedIn profile at linkedin.com/in/saurabhdahal." />
+          </div>
+          <div class="qr-url">linkedin.com/in/saurabhdahal</div>
+          <p class="muted">Saurabh (Rob) Dahal — Developer Advocate, Agentic AI, AWS.</p>
+        </div>
+      </div>
+      <div class="footer">© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.</div>
+      <div class="slide-num">40</div>
+    </section> -->
+  </main>
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="controls">← / → navigate · F fullscreen</div>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')], progressBar = document.getElementById('progressBar');
+    let current = 0;
+
+    // True while the pointer or keyboard is on a player, so the deck can keep
+    // its hands off Space and the arrow keys and let the video use them.
+    const isMedia = el => !!el?.closest?.('video, audio');
+
+    function render() {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === current);
+        s.classList.remove('revealed');
+        if (i !== current) s.querySelectorAll('video, audio').forEach(m => m.pause());
+      });
+      progressBar.style.width = `${(current + 1) / slides.length * 100}%`;
+      window.location.hash = String(current + 1)
+    }
+    function go(d) { current = Math.max(0, Math.min(slides.length - 1, current + d)); render() }
+    function goTo(i) { current = Math.max(0, Math.min(slides.length - 1, i)); render() }
+    function reveal() { slides[current].classList.add('revealed') }
+
+    document.addEventListener('click', e => { if (!isMedia(e.target)) reveal() });
+    document.addEventListener('keydown', e => {
+      const media = isMedia(e.target);
+      if (!media && ['ArrowRight', 'PageDown', ' '].includes(e.key)) go(1);
+      if (!media && ['ArrowLeft', 'PageUp'].includes(e.key)) go(-1);
+      if (!media && e.key === 'Enter') reveal();
+      if (e.key.toLowerCase() === 'f') document.documentElement.requestFullscreen?.()
+    });
+
+    function fit() { document.documentElement.style.setProperty('--slide-scale', Math.min(window.innerWidth / 1600, window.innerHeight / 900)) }
+    window.addEventListener('resize', fit); fit();
+    const hashSlide = Number(location.hash.replace('#', '')); if (hashSlide) goTo(hashSlide - 1); render();
+  </script>
+</body>
+
+</html>

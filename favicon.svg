@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Robot arm on a dark background">
+  <rect width="32" height="32" rx="6" fill="#111922"/>
+  <!-- a two-link arm: the kinematic chain the deck is about -->
+  <g fill="none" stroke="#ff9900" stroke-width="3" stroke-linecap="round">
+    <path d="M8 26 L14 15"/>
+    <path d="M14 15 L24 11"/>
+  </g>
+  <circle cx="8" cy="26" r="2.6" fill="#f2f3f3"/>
+  <circle cx="14" cy="15" r="2.6" fill="#f2f3f3"/>
+  <circle cx="24" cy="11" r="3" fill="#44b9d6"/>
+</svg>
